@@ -1,5 +1,6 @@
 package com.pezesha.loans.service;
 
+import com.pezesha.loans.exception.BadRequestException;
 import com.pezesha.loans.exception.NotFoundException;
 import com.pezesha.loans.models.Account;
 import com.pezesha.loans.repository.AccountRepository;
@@ -21,6 +22,10 @@ public class AccountService {
 
     @Transactional
     public Account createAccount(BigDecimal balance) {
+        if (balance.compareTo(BigDecimal.ZERO) <= 0) {
+            //@todo replace all strings with constants in the config file then import
+            throw new BadRequestException("Initial deposit must be greater than 0");
+        }
         Account account = new Account(balance);
         return accountRepository.save(account);
     }

@@ -18,8 +18,9 @@ public class TransferService {
         this.transactionService = transactionService;
     }
 
+    //'@Transactional' for atomicity and 'synchronized' to avoid race conditions
     @Transactional
-    public Transaction transferMoney(Long sourceAccountId, Long destinationAccountId, BigDecimal amount) {
+    public synchronized Transaction transferMoney(Long sourceAccountId, Long destinationAccountId, BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new BadRequestException("Transfer amount must be greater than zero");
         }
