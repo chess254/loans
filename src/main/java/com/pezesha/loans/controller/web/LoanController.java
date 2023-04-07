@@ -3,6 +3,7 @@ package com.pezesha.loans.controller.web;
 import com.pezesha.loans.util.LoanRepaymentCalculator;
 import com.pezesha.loans.util.LoanRepaymentSchedule;
 import com.pezesha.loans.util.RepaymentFrequency;
+import jakarta.validation.constraints.Min;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ public class LoanController {
 
     @PostMapping(value = "/calculate", consumes = "application/x-www-form-urlencoded")
     public String index(@RequestParam("loanAmount") double loanAmount,
-                        @RequestParam("loanTermMonths") int loanTermMonths,
+                        @RequestParam("loanTermMonths") @Min(value = 1, message = "loan term cannot be less than 1") int loanTermMonths,
                         @RequestParam("interestRate") double interestRate,
                         @RequestParam("repaymentFrequency") int repaymentFrequency,
                         Model model){
@@ -40,12 +41,6 @@ public class LoanController {
         }
         RepaymentFrequency freq = RepaymentFrequency.values()[rf];
         LoanRepaymentCalculator calculator = new LoanRepaymentCalculator();
-//        String response = calculator.calculateRepaymentSchedule(
-//                loanAmount,
-//                loanTermMonths,
-//                interestRate,
-//                freq
-//        ).toString();
         LoanRepaymentSchedule response = calculator.calculateRepaymentSchedule(
                 loanAmount,
                 loanTermMonths,
@@ -55,7 +50,6 @@ public class LoanController {
 
         log.info("response: {}", response);
 
-//        JSONObject data = new JSONObject(response);
         model.addAttribute("loanRepaymentSchedule", response);
         return "index";
 

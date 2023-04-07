@@ -20,13 +20,6 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-//    @PostMapping
-//    public ResponseEntity<Account> createAccount(@RequestParam @Positive(message = "You CAnnot create an account with 0 deposit") BigDecimal balance) {
-//        Account account = accountService.createAccount(balance);
-//        return ResponseEntity.created(URI.create("/accounts/" + account.getId()))
-//                .body(account);
-//    }
-
     @PostMapping(consumes = "application/json;charset=UTF-8")
     public ResponseEntity<Account> createAccount(@RequestBody @Valid AccountDto accountDto) {
         Account account = accountService.createAccount(accountDto.getDeposit());

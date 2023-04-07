@@ -17,11 +17,9 @@ import java.math.BigDecimal;
 public class TransferDto {
 
     @jakarta.validation.constraints.NotNull(message = "Sender Account Id should not be null")
-//    @NotBlank(message = "Sender account id should be provided")
     @Min(1)
     private Long sourceAccountId;
     @jakarta.validation.constraints.NotNull(message = "Sender Account Id should not be null")
-//    @NotBlank(message = "Receiver account id should be provided")
     @Min(1)
     private Long destinationAccountId;
     @jakarta.validation.constraints.NotNull(message = "deposit value should be provided")
