@@ -1,14 +1,15 @@
 package com.pezesha.loans.controller;
 
+import com.pezesha.loans.dto.TransferDto;
 import com.pezesha.loans.models.Transaction;
 import com.pezesha.loans.service.TransferService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.net.URI;
 
 @RestController
@@ -22,8 +23,8 @@ public class TransferController {
     }
 
     @PostMapping
-    public ResponseEntity<Transaction> transferMoney(@RequestParam Long sourceAccountId, @RequestParam Long destinationAccountId, @RequestParam BigDecimal amount) {
-        Transaction transaction = transferService.transferMoney(sourceAccountId, destinationAccountId, amount);
+    public ResponseEntity<Transaction> transferMoney(@RequestBody @Valid TransferDto transferDto) {
+        Transaction transaction = transferService.transferMoney(transferDto.getSourceAccountId(), transferDto.getDestinationAccountId(), transferDto.getAmount());
         return ResponseEntity.created(URI.create("/transactions/" + transaction.getId()))
                 .body(transaction);
     }

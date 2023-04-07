@@ -1,7 +1,9 @@
 package com.pezesha.loans.util;
 
+import lombok.Data;
 import lombok.Getter;
 
+@Data
 @Getter
 public class LoanRequest {
 

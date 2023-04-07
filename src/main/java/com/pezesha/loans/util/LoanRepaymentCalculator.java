@@ -9,7 +9,7 @@ public class LoanRepaymentCalculator {
             RepaymentFrequency repaymentFrequency) {
 
         // Calculate the periodic interest rate and payment amount
-        double periodicInterestRate = interestRate / (repaymentFrequency.getNumPaymentsPerYear() * 100.0);
+        double periodicInterestRate = interestRate / ( repaymentFrequency.getNumPaymentsPerYear() * 100.0);
         double paymentAmount = calculatePaymentAmount(loanAmount, periodicInterestRate, loanTermMonths);
 
         // Create the repayment schedule

@@ -1,14 +1,17 @@
 package com.pezesha.loans.util;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
+@Data
 @Getter
 @Setter
 public class LoanRepaymentSchedule {
@@ -33,7 +36,6 @@ public class LoanRepaymentSchedule {
         repayments.add(repayment);
     }
 
-    // Getters and setters omitted for brevity
 
     @Override
     public String toString() {
@@ -71,7 +73,10 @@ public class LoanRepaymentSchedule {
     }
 
     public double getTotalPaymentAmount() {
-        return repayments.stream().mapToDouble(LoanRepayment::getPaymentAmount).sum();
+        double sum = repayments.stream().mapToDouble(LoanRepayment::getPaymentAmount).sum();
+        BigDecimal bd = new BigDecimal(Double.toString(sum));
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        return bd.doubleValue();
     }
 
     public double getTotalPrincipal() {

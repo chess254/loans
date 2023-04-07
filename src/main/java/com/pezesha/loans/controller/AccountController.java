@@ -1,12 +1,12 @@
 package com.pezesha.loans.controller;
 
+import com.pezesha.loans.dto.AccountDto;
 import com.pezesha.loans.models.Account;
 import com.pezesha.loans.service.AccountService;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
@@ -20,9 +20,16 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping
-    public ResponseEntity<Account> createAccount(@RequestParam @Positive(message = "You CAnnot create an account with 0 deposit") BigDecimal balance) {
-        Account account = accountService.createAccount(balance);
+//    @PostMapping
+//    public ResponseEntity<Account> createAccount(@RequestParam @Positive(message = "You CAnnot create an account with 0 deposit") BigDecimal balance) {
+//        Account account = accountService.createAccount(balance);
+//        return ResponseEntity.created(URI.create("/accounts/" + account.getId()))
+//                .body(account);
+//    }
+
+    @PostMapping(consumes = "application/json;charset=UTF-8")
+    public ResponseEntity<Account> createAccount(@RequestBody @Valid AccountDto accountDto) {
+        Account account = accountService.createAccount(accountDto.getDeposit());
         return ResponseEntity.created(URI.create("/accounts/" + account.getId()))
                 .body(account);
     }

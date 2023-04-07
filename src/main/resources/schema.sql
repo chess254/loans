@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS transactions CASCADE;
 DROP TABLE IF EXISTS accounts CASCADE;
 CREATE TABLE accounts (
                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                          balance DECIMAL(19, 4) NOT NULL CHECK (balance > 0)
+                          balance DECIMAL(12, 2) NOT NULL CHECK (balance > 0)
 );
 
 INSERT INTO accounts (balance) VALUES (1000.00);
@@ -18,7 +18,7 @@ CREATE TABLE transactions (
                               id BIGINT AUTO_INCREMENT PRIMARY KEY,
                               source_account_id BIGINT NOT NULL,
                               destination_account_id BIGINT NOT NULL,
-                              amount DECIMAL(19, 4) NOT NULL,
+                              amount DECIMAL(12, 2) NOT NULL,
                               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

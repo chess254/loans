@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Repayments</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .paid {
+            color: green;
+        }
+        .unpaid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Loan Repayments</h1>
+
+<p>
+    <span style="font-weight: bold;">Loan amount:</span>&nbsp;&nbsp; [[${loanRepaymentSchedule.loanAmount}]],<br>
+    <span style="font-weight: bold;">Loan term:</span>&nbsp;&nbsp; [[${loanRepaymentSchedule.loanTermMonths}]] months,<br>
+    <span style="font-weight: bold;">Interest rate:</span>&nbsp;&nbsp; [[${loanRepaymentSchedule.interestRate}]]%,<br>
+    <span style="font-weight: bold;">Repayment frequency:</span>&nbsp;&nbsp; [[${loanRepaymentSchedule.repaymentFrequency}]]<br><br>
+</p>
+
+<table>
+    <tr>
+        <th>Month</th>
+        <th>Payment Amount</th>
+        <th>Principal</th>
+        <th>Interest</th>
+        <th>Balance</th>
+    </tr>
+    <tr th:each="payment : ${loanRepaymentSchedule.repayments}">
+        <td th:text="${payment.month}"></td>
+        <td th:text="'KES ' + ${payment.paymentAmount}"></td>
+        <td th:text="'KES ' + ${payment.principal}"></td>
+        <td th:text="'KES ' + ${payment.interest}"></td>
+        <td th:text="'KES ' + ${payment.balance}"></td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <hr/>
+        </td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td th:text="'KES ' + ${loanRepaymentSchedule.getTotalPaymentAmount()}"></td>
+        <td th:text="'KES ' + ${loanRepaymentSchedule.getTotalPrincipal()}"></td>
+        <td th:text="'KES ' + ${loanRepaymentSchedule.getTotalInterest()}"></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+
+
+<!--<pre th:text="${#jsonObject(data)}"></pre>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Date</th>-->
+<!--        <th>Amount Due</th>-->
+<!--        <th>Amount Paid</th>-->
+<!--        <th>Status</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="repayment : ${data.repayments}">-->
+<!--        <td th:text="${repayment.date}"></td>-->
+<!--        <td th:text="${repayment.amountDue}"></td>-->
+<!--        <td th:text="${repayment.amountPaid}"></td>-->
+<!--        <td th:classappend="${repayment.status == 'Paid'} ? 'paid' : (${repayment.status == 'Unpaid'} ? 'unpaid' : '')"-->
+<!--            th:text="${repayment.status}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+</body>
+</html>
