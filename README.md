@@ -19,7 +19,7 @@ Bulit with spring-boot, Mysql, JDK 17
 
 #### NB: Make sure the database is running on the host and port configured above before continuing to the following steps and localhost port 8080 is open.
 
-##### Edit the application.properties file in ```loans/src/main/resources``` and provide values for 
+##### Edit the ```application.properties``` file in ```loans/src/main/resources``` and provide values for 
 ```agsl
 spring.datasource.url=jdbc:mysql://<host>:<port>/<database_name>
 spring.datasource.username=<database_username>
