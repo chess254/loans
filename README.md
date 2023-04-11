@@ -97,7 +97,13 @@ sample JSON payload:
  localhost:8080/calculate
 ```
 
-sample JSON payload: Must be positive
+sample JSON payload: Must be positive. The value for repaymentFrequency is; 
+
+0 for monthly, 
+
+1 for bi monthly 
+
+or 2 for Weekly.
 ```json
 {
  "loanAmount" :100,
