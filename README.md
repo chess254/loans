@@ -8,16 +8,15 @@ A sample loan app for pezesha technical test.
 2. [JDK version 17](https://www.oracle.com/ke/java/technologies/downloads/#java17).
 3. A Rest client like [postman](https://www.postman.com/downloads/) or [insomnia](https://insomnia.rest/download) to test the rest endpoint.
 4. [git](https://git-scm.com/downloads) if using unix based machine or [git-bash](https://gitforwindows.org/) if on windows.
-5. [maven](#) version ........
+5. [maven](https://maven.apache.org/download.cgi) version 3.8.7
 
 ## How to sun the application
 ##### Clone the repository
 
 ```git clone https://github.com/chess254/loans.git```
 
-##### open your terminal and navigate to the cloned folder
 
-``cd loans``
+#### NB: Make sure the database is running on the host and port configured above before continuing to the following steps and localhost port 8080 is open.
 
 ##### Edit the application.properties file in ```loans/src/main/resources``` and provide values for 
 ```agsl
@@ -33,8 +32,9 @@ spring.datasource.password=<database_user_password>
 <database_user_password (password for the database)> 
 
 ```
+##### open your terminal and navigate to the cloned folder
 
-#### NB: Make sure the database is running on the host and port configured above before continuing to the following steps and localhost port 8080 is open.
+``cd loans``
 
 ##### clean and install the dependencies using maven
 ```mvn clean``` (on unix based) or ``` .\mvnw clean ``` (on windows)
