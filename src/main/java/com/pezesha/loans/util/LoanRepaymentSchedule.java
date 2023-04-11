@@ -42,18 +42,19 @@ public class LoanRepaymentSchedule {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         String currencySymbol = Currency.getInstance(Locale.getDefault()).getSymbol();
 
+
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Loan amount: %s%s\n", currencySymbol, df.format(loanAmount)));
-        sb.append(String.format("Loan term: %d months\n", loanTermMonths));
-        sb.append(String.format("Interest rate: %.2f%%\n", interestRate));
-        sb.append(String.format("Repayment frequency: %s\n", repaymentFrequency));
+        sb.append(String.format("Loan amount: %s%s%n", currencySymbol, df.format(loanAmount)));
+        sb.append(String.format("Loan term: %d months%n", loanTermMonths));
+        sb.append(String.format("Interest rate: %.2f%%%n", interestRate));
+        sb.append(String.format("Repayment frequency: %s%n", repaymentFrequency));
         sb.append("\n");
 
         sb.append("Month     Payment Amount      Principal         Interest        Balance\n");
         sb.append("--------------------------------------------------------------\n");
 
         for (LoanRepayment repayment : repayments) {
-            sb.append(String.format("%-10d%-20s%-20s%-20s%-20s\n",
+            sb.append(String.format("%-10d%-20s%-20s%-20s%-20s%n",
                     repayment.getMonth(),
                     currencySymbol + df.format(repayment.getPaymentAmount()),
                     currencySymbol + df.format(repayment.getPrincipal()),
@@ -62,7 +63,7 @@ public class LoanRepaymentSchedule {
         }
 
         sb.append("--------------------------------------------------------------\n");
-        sb.append(String.format("%-10s%-20s%-20s%-20s%-20s\n",
+        sb.append(String.format("%-10s%-20s%-20s%-20s%-20s%n",
                 "",
                 currencySymbol + df.format(getTotalPaymentAmount()),
                 currencySymbol + df.format(getTotalPrincipal()),

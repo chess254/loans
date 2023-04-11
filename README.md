@@ -60,14 +60,22 @@ This will seed the database with initial dummy data from file ```loans/src/main/
 ```json
 {"deposit":  950998}
  ``` 
-#### 2.  To retrieve account information by id.  
+
+#### 2.  To retrieve all accounts.
+
+``` 
+ GET 
+ localhost:8080/accounts
+```
+
+#### 3.  To retrieve account information by id.  
 
 ``` 
  GET 
  localhost:8080/accounts/{id}
 ```
 
-#### 2.  To transfer money from one account to another.
+#### 4.  To transfer money from one account to another.
 ```                                       
 POST                                     
 localhost:8080/transfers

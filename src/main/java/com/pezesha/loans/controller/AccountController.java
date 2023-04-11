@@ -4,6 +4,7 @@ import com.pezesha.loans.dto.AccountDto;
 import com.pezesha.loans.models.Account;
 import com.pezesha.loans.service.AccountService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
+@Slf4j
 public class AccountController {
 
     private final AccountService accountService;
@@ -23,6 +25,7 @@ public class AccountController {
     @PostMapping(consumes = "application/json;charset=UTF-8")
     public ResponseEntity<Account> createAccount(@RequestBody @Valid AccountDto accountDto) {
         Account account = accountService.createAccount(accountDto.getDeposit());
+        log.info("Created new Account : {}", account);
         return ResponseEntity.created(URI.create("/accounts/" + account.getId()))
                 .body(account);
     }

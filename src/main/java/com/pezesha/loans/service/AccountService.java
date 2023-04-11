@@ -23,7 +23,6 @@ public class AccountService {
     @Transactional
     public Account createAccount(BigDecimal balance) {
         if (balance.compareTo(BigDecimal.ZERO) <= 0) {
-            //@todo replace all strings with constants in the config file then import
             throw new BadRequestException("Initial deposit must be greater than 0");
         }
         Account account = new Account(balance);
