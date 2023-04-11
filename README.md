@@ -5,9 +5,9 @@ A sample loan app for pezesha technical test.
 ## Prerequisites
 
 1. MySQL running locally on port 3306.
-2. [JDK version 17](#).
-3. A Rest client like [postman](#) or [insomnia](#) to test the rest endpoint.
-4. [git](#) if using unix based machine or [git-bash](#) if on windows.
+2. [JDK version 17](https://www.oracle.com/ke/java/technologies/downloads/#java17).
+3. A Rest client like [postman](https://www.postman.com/downloads/) or [insomnia](https://insomnia.rest/download) to test the rest endpoint.
+4. [git](https://git-scm.com/downloads) if using unix based machine or [git-bash](https://gitforwindows.org/) if on windows.
 5. [maven](#) version ........
 
 ## How to sun the application
