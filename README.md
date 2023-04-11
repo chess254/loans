@@ -1,6 +1,7 @@
 # loans
 
-A sample loan app for pezesha technical test.
+A sample loan app for pezesha technical test.<br>
+Bulit with spring-boot, Mysql, JDK 17
 
 ## Prerequisites
 
@@ -49,6 +50,7 @@ This will seed the database with initial dummy data from file ```loans/src/main/
 ## Task: 1   A simple money transfer REST API
 
 ### Endpoints
+<br>
 
 #### 1. To add a new account
 ``` 
@@ -56,10 +58,19 @@ This will seed the database with initial dummy data from file ```loans/src/main/
  localhost:8080/accounts
 ```
 
-  sample JSON payload: Must be positive
+  sample JSON payload: deposit Must be positive
 ```json
-{"deposit":  950998}
+{"deposit":  2222}
  ``` 
+
+sample JSON Response
+```json
+{
+	"id": 6,
+	"balance": 2222
+}
+```
+<br><br>
 
 #### 2.  To retrieve all accounts.
 
@@ -67,6 +78,36 @@ This will seed the database with initial dummy data from file ```loans/src/main/
  GET 
  localhost:8080/accounts
 ```
+sample JSON Response
+```json
+[
+ {
+  "id": 1,
+  "balance": 1000.00
+ },
+ {
+  "id": 2,
+  "balance": 500.00
+ },
+ {
+  "id": 3,
+  "balance": 2000.00
+ },
+ {
+  "id": 4,
+  "balance": 300.00
+ },
+ {
+  "id": 5,
+  "balance": 1500.00
+ },
+ {
+  "id": 6,
+  "balance": 2222.00
+ }
+]
+```
+<br><br>
 
 #### 3.  To retrieve account information by id.  
 
@@ -75,6 +116,14 @@ This will seed the database with initial dummy data from file ```loans/src/main/
  localhost:8080/accounts/{id}
 ```
 
+sample JSON Response
+```json
+{
+	"id": 6,
+	"balance": 2222.00
+}
+```
+<br><br>
 #### 4.  To transfer money from one account to another.
 ```                                       
 POST                                     
@@ -88,8 +137,24 @@ sample JSON payload:
 ```json                                   
 {
   "sourceAccountId" : 1,
-  "destinationAccountId" : 2,
+  "destinationAccountId" : 5,
   "amount" : 500
+}
+ ```
+sample JSON response:
+```json                                   
+{
+	"id": 1,
+	"sourceAccount": {
+		"id": 5,
+		"balance": 1000.00
+	},
+	"destinationAccount": {
+		"id": 1,
+		"balance": 1500.00
+	},
+	"amount": 500,
+	"timestamp": "2023-04-11T06:43:50.8824894"
 }
  ```
 
@@ -148,3 +213,5 @@ sample JSON response:
  "totalInterest": 2.51
 }
  ``` 
+
+
